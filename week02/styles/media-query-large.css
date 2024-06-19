@@ -1,8 +1,10 @@
-/*
-Write a containing media query to be applied at a viewport width of 500px or greater.
-@media screen and (min-width: 500px)
-Change through declaration within the media query the header to a black background with white text, and
-Change the main element to display two columns of equal size.
-Example
-grid-template-columns: 1fr 1fr;
-*/
+@media screen and (min-width: 500px) {
+    header {
+        background-color: black;
+        color: white;
+    }
+
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
