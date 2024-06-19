@@ -1,77 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD 131 - Dynamic Web Fundamentals - Garrett Heiner</title>
+    <meta
+      name="description"
+      content="Garrett Heiner's WDD 131 - Dynamic Web Fundamentals main page."
+    />
+    <meta name="author" content="Garrett Heiner" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="./scripts/getdates.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WDD 131 - Dynamic Web Fundamentals - Garrett Heiner</title>
-  <meta name="description" content="Garrett Heiner's WDD 131 - Dynamic Web Fundamentals main page." />
-  <meta name="author" content="Garrett Heiner" />
-  <link rel="stylesheet" href="./styles/base.css" />
-  <script src="./scripts/getdates.js" defer></script>
-</head>
-
-<body>
-  <header>
-    <h1>WDD 131: Dynamic Web Fundamentals - Garrett Heiner</h1>
-    <nav>
-      <ul>
-        <li>
-          <a href="#">LinkedIn</a>
-        </li>
-        <li>
-          <a href="#">Scripture</a>
-        </li>
-        <li>
-          <a href="#">I-Learn</a>
-        </li>
-        <li>
-          <a href="#">Final Project</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section class="card about">
-      <div>
-        <h2>About Me</h2>
-        <p>
-          My name is Garrett, I go by Garrett. I was born in Colorado and I
-          live in Arizona. I am currently working as a claims associate at an
-          insurance company. I have no children, and I love spending time with
-          my siblings. I love to travel and I love to learn new things.
-        </p>
-        <img src="./images/us_at_temple_1.jpg" alt="Garrett and his fiance Sarah at the Sao Paulo temple." height="400">
-      </div>
-      <div>
-        <h3>Arizona, United States of America</h3>
-        <hr>
-        <img src="./images/rsz_arizona.png" alt="Arizona landscape">
-        <p>
-          Arizona is hot. Lorem ipsum, dolor sit amet consectetur adipisicing
-          elit. Ex deleniti, minima molestias voluptates dolores ipsum corrupti
-          reiciendis similique maxime ab. Dolore ea quas eaque earum labore
-          pariatur totam maxime ducimus!
-        </p>
-      </div>
-    </section>
-    <section class="card resources">
-      <h2>Web Dev Resources</h2>
-      <ul>
-        <li><a href="https://developer.mozilla.org/en-US" target="_blank">Mdn</a></li>
-        <li><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
-        <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
-      </ul>
-    </section>
-  </main>
-  <footer>
-    <p>
-      ©<span id="current-year"></span>
-      | Garrett Heiner | Arizona
-    </p>
-    <p id="lastModified">
-    </p>
-  </footer>
-</body>
-
+  <body>
+    <header>
+      <h1>WDD 131: Dynamic Web Fundamentals - Garrett Heiner</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.linkedin.com/in/garrett-heiner-a14b42ab/">LinkedIn</a>
+          </li>
+          <li>
+            <a href="https://www.churchofjesuschrist.org/study/scriptures/nt/john/14?lang=eng&id=p18#p18">Scripture</a>
+          </li>
+          <li>
+            <a href="https://byui.instructure.com">I-Learn</a>
+          </li>
+          <li>
+            <a href="#">Final Project</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="card about">
+        <header >
+          <h2>About Me</h2>
+        </header>
+          <div class="profile">
+          <img class="profile-pic"
+            src="./images/us_at_temple_1.jpg"
+            alt="Garrett and his fiance Sarah at the Sao Paulo temple."
+            height="400"
+          />
+          <p>
+            My name is Garrett, I go by Garrett. I was born in Colorado and I
+            live in Arizona. I am currently working as a claims associate at an
+            insurance company. I have no children, and I love spending time with
+            my siblings and my fiance, Sarah. I love to travel and I love to learn new things.
+          </p>
+        </div>
+        <div class="state subsection">
+          <h3>Arizona, USA</h3>
+          <hr />
+          <img src="./images/rsz_arizona.png" alt="Arizona landscape" />
+          <p>
+            Arizona is hot. Lorem ipsum, dolor sit amet consectetur adipisicing
+            elit. Ex deleniti, minima molestias voluptates dolores ipsum
+            corrupti reiciendis similique maxime ab. Dolore ea quas eaque earum
+            labore pariatur totam maxime ducimus!
+          </p>
+        </div>
+      </section>
+      <section class="card resources">
+        <header>
+        <h2>Web Dev Resources</h2>
+      </header>
+        <div>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US" target="_blank"
+              >Mdn</a
+            >
+          </li>
+          <li>
+            <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+          </li>
+          <li>
+            <a href="https://stackoverflow.com/" target="_blank"
+              >Stack Overflow</a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>
+        ©<span id="current-year"></span>
+        | Garrett Heiner | Arizona
+      </p>
+      <p id="lastModified"></p>
+    </footer>
+  </body>
 </html>
