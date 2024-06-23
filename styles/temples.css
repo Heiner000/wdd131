@@ -83,11 +83,13 @@ h2 {
   text-align: center;
   margin: 1rem;
   color: #004d00;
+  grid-column: 1 / -1;
 }
 
 main {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
