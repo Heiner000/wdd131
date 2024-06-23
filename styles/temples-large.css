@@ -7,15 +7,20 @@
   }
 
   nav {
+    display: flex;
     justify-content: flex-end;
     flex-direction: row;
   }
 
   nav a {
-    flex: 1 1 100%;
+    flex: 1 1 auto;
   }
 
   main {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #menu {
+    display: none;
   }
 }

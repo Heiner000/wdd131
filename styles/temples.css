@@ -7,26 +7,53 @@
 
 body {
   margin: 0;
+  background-color: #f4f4f9;
+  color: #333;
 }
 
 header {
-  background-color: violet;
+  background-color: #004d00;
   display: grid;
   grid-gap: 1rem;
   padding: 20px;
-  border: 2px dotted chartreuse;
-  box-shadow: 0 0 30px #333;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   width: 100%;
+  color: #fff;
+}
+
+#menu {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  background: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #fff;
+}
+
+#menu::before {
+  content: "≡";
+}
+
+#menu.show::before {
+  content: "X";
 }
 
 nav {
+  display: none;
   max-width: 700px;
   font-size: 1.5rem;
   margin: 0 auto;
-  display: flex;
   flex-direction: column;
   list-style: none;
-  border: 5px solid indigo;
+}
+
+nav.show {
+  display: flex;
 }
 
 nav a {
@@ -34,6 +61,7 @@ nav a {
   text-align: center;
   padding: 1rem;
   text-decoration: none;
+  color: #fff;
 }
 
 nav a:hover {
@@ -41,7 +69,7 @@ nav a:hover {
 }
 
 .active {
-  color: red;
+  color: #ff6666;
 }
 
 h1 {
@@ -54,6 +82,7 @@ h2 {
   font-size: 2rem;
   text-align: center;
   margin: 1rem;
+  color: #004d00;
 }
 
 main {
@@ -77,8 +106,9 @@ figure img {
 }
 
 footer {
-  background-color: violet;
+  background-color: #004d00;
   text-align: center;
   height: auto;
   padding: 1rem;
+  color: #fff;
 }
