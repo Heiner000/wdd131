@@ -1,0 +1,21 @@
+/* larger view */
+@media (min-width: 740px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav {
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
+  nav a {
+    flex: 1 1 100%;
+  }
+
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
