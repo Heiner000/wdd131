@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="description" content="WDD131 Dynamic Web Fundamentals country webpage.">
+    <title>WDD131 | Brazil</title>
+    <meta name="description" content="WDD131 Dynamic Web Fundamentals country webpage about Brazil.">
     <meta name="author" content="Garrett Heiner">
     <link rel="stylesheet" href="styles/place.css">
-    <link rel="stylesheet" href="styles/temples.css">
+    <link rel="stylesheet" href="styles/place-large.css" media="screen and (min-width: 1000px)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
     <script src="scripts/getdates.js" defer></script>
 </head>
 
@@ -18,22 +22,34 @@
     </header>
 
     <main>
-        <section>
+        <section class="hero">
             <picture>
-                <source srcset="images/hero-large.webp" media="min-width: 1000px">
-                <source srcset="images/hero-medium.webp" media="min-width: 550px">
-                <img src="images/hero-small.webp" alt="Orem Utah Temple" width="400" height="200">
+                <source srcset="images/brasil-landscape-lrg.webp" media="min-width: 1000px">
+                <source srcset="images/brasil_landscape_med.webp" media="min-width: 550px">
+                <img src="images/brasil_landscape-small.webp" alt="Rio de Janeiro, Brazil landscape" width="400"
+                    height="200">
             </picture>
         </section>
-        <section>
+        <section class="data">
             <h2>Data</h2>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
         </section>
-        <section>
-            <h2>Weather</h2>
-
+        <section class="weather">
+            <div>
+                <h2>Weather <span class="weather-icon"></span></h2>
+                <img src="images/weather_icon.svg" alt="weather icon" class="weather-icon-mobile" width="24"
+                    height="24">
+            </div>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
+            <p>Label: Value</p>
         </section>
     </main>
-    <aside>Aside Content</aside>
 
     <footer>
         <p>©<span id="current-year"></span> | Garrett Heiner | Arizona</p>
