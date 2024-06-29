@@ -69,9 +69,7 @@ footer {
 }
 
 @media (min-width: 1000px) {
-    .weather-icon::after {
-        content: "☀️";
-        font-size: 1.5rem;
-        margin-left: 0.5rem;
-    }
+
+
+
 }
