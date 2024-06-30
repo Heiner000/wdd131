@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
     <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/place.js" defer></script>
 </head>
 
 <body>
@@ -47,10 +48,10 @@
                 <img src="images/weather_icon.svg" alt="weather icon" class="weather-icon-mobile" width="24"
                     height="24">
             </div>
-            <p>Temperature: 77 °F</p>
+            <p>Temperature: <span class="temp">25</span> °C</p>
             <p>Conditions: Partly Cloudy</p>
-            <p>Wind: 5 km/h</p>
-            <p>Wind Chill: 65 °F</p>
+            <p>Wind: <span id="wind-speed">5</span> km/h</p>
+            <p>Wind Chill: <span id="wind-chill"></span></p>
         </section>
     </main>
 
