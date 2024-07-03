@@ -14,7 +14,7 @@ body {
 img {
     display: block;
     margin: 1rem;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -22,6 +22,7 @@ img {
         opacity: 0;
         filter: brightness(0);
     }
+
     100% {
         opacity: 1;
         filter: brightness(1);
