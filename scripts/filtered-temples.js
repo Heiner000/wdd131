@@ -90,20 +90,91 @@ const temples = [
   },
 ];
 
-const container = document.getElementById("cards-container");
+const homeLink = document.querySelector("#home");
+const oldLink = document.querySelector("#old");
+const newLink = document.querySelector("#new");
+const largeLink = document.querySelector("#large");
+const smallLink = document.querySelector("#small");
+const headerTitle = document.querySelector("main h2");
 
-temples.forEach((temple) => {
-  const card = document.createElement("div");
-  card.className = "temple-card";
-
-  card.innerHTML = `
-  <h2>${temple.templeName}</h2>
-  <p>Location: ${temple.location}</p>
-  <p>Dedicated: ${temple.dedicated}</p>
-  <p>Size: ${temple.area}</p>
-  <img src="${temple.imageUrl}" alt="${temple.templeName}" loading="lazy">
-  `;
-
-  container.appendChild(card);
+homeLink.addEventListener("click", () => {
+  createTempleCard(temples);
+  toggleActive(homeLink);
+  updateHeader("Home");
 });
 
+oldLink.addEventListener("click", () => {
+  createTempleCard(
+    temples.filter(
+      (temple) =>
+        new Date(temple.dedicated.replace(/,/g, "")) < new Date("1900-01-01")
+    )
+  );
+  toggleActive(oldLink);
+  updateHeader("Old");
+});
+
+newLink.addEventListener("click", () => {
+  createTempleCard(
+    temples.filter(
+      (temple) =>
+        new Date(temple.dedicated.replace(/,/g, "")) > new Date("2000-01-01")
+    )
+  );
+  toggleActive(newLink);
+  updateHeader("New");
+});
+
+largeLink.addEventListener("click", () => {
+  createTempleCard(temples.filter((temple) => temple.area > 90000));
+  toggleActive(largeLink);
+  updateHeader("Large");
+});
+
+smallLink.addEventListener("click", () => {
+  createTempleCard(temples.filter((temple) => temple.area < 10000));
+  toggleActive(smallLink);
+  updateHeader("Small");
+});
+
+function createTempleCard(filteredTemples) {
+  document.querySelector("#cards-container").innerHTML = "";
+  filteredTemples.forEach((temple) => {
+    let card = document.createElement("section");
+    let name = document.createElement("h3");
+    let location = document.createElement("p");
+    let dedication = document.createElement("p");
+    let area = document.createElement("p");
+    let img = document.createElement("img");
+
+    name.textContent = temple.templeName;
+    location.innerHTML = `<span class="label">Location:</span> ${temple.location}`;
+    dedication.innerHTML = `<span class="label">Dedicated:</span> ${temple.dedicated}`;
+    area.innerHTML = `<span class="label">Size:</span> ${temple.area} sq ft`;
+    img.setAttribute("src", temple.imageUrl);
+    img.setAttribute("alt", `${temple.templeName} Temple`);
+    img.setAttribute("loading", "lazy");
+
+    card.className = "temple-card";
+    card.appendChild(name);
+    card.appendChild(location);
+    card.appendChild(dedication);
+    card.appendChild(area);
+    card.appendChild(img);
+
+    document.querySelector("#cards-container").appendChild(card);
+  });
+}
+
+function toggleActive(element) {
+  document.querySelectorAll(".navigation a").forEach((link) => {
+    link.classList.remove("active");
+  });
+  element.classList.add("active");
+}
+
+function updateHeader(title) {
+  document.querySelector("main h2").textContent = title;
+}
+
+createTempleCard(temples);
