@@ -16,16 +16,10 @@
         flex: 1 1 auto;
     }
 
-    main {
-        /* grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto 1fr; */
-    }
-
     #cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        /* width: 100%; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
     }
 
     #menu {

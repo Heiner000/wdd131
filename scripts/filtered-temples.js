@@ -106,3 +106,4 @@ temples.forEach((temple) => {
 
   container.appendChild(card);
 });
+
