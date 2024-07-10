@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="WDD131 - Dynamic Web Fundamentals product review form page">
+    <meta name="author" content="Garrett Heiner">
+
+    <title>WDD131 | Product Review</title>
+
+
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="scripts/form.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Product Review</h1>
+    </header>
+
+    <main>
+        <form action="review.html" method="get">
+            <fieldset>
+                <label>Product Name: <select name="product-name" id="" required>
+                        <option value="">Select a Product... &#9662;</option>
+                        <!-- rest of the options are rendered via JS -->
+                    </select></label>
+            </fieldset>
+
+            <fieldset>
+
+                <div>Overall Rating:</div>
+                <div class="stars">
+                    <input type="radio" id="fivestar" name="stars" value="5" required><label for="fivestar"></label>
+                    <input type="radio" id="fourstar" name="stars" value="4" required><label for="fourstar"></label>
+                    <input type="radio" id="threestar" name="stars" value="3" required><label for="threestar"></label>
+                    <input type="radio" id="twostar" name="stars" value="2" required><label for="twostar"></label>
+                    <input type="radio" id="onestar" name="stars" value="1" required><label for="onestar"></label>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <div>Date of Installation</div>
+
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <p>©<span id="current-year"></span> | Garrett Heiner | Arizona</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>
