@@ -11,7 +11,6 @@ The example form uses star entities ☆ (&star;) to display the level. You are f
 Use a input of type radio for each of the levels.
 The required attributes are an id, name (each of the radio buttons should have the same name value), and required.
 
-
 Date of Installation
 Use a input of type date to allow the user to select the date the product was installed.
 The required attributes are an id, name, and required
@@ -31,3 +30,7 @@ User Name
 Use a input of type text for the user to enter their name.
 Add the id and name attributes.
 The user name entry is optional.
+
+Form Submission Button
+Use a input of type submit with an appropriate value that indicates the form action purpose.
+

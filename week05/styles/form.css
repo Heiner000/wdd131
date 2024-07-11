@@ -1,11 +1,125 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*----------- BODY --------------*/
+body {
+    font-size: 16px;
+    font-family: "Franklin Gothic Medium", Arial, sans-serif;
+    color: #112a46;
+}
+
+/*----------- HEADER --------------*/
+header {
+    padding: 0.5rem 2%;
+    background-color: #acc8e5;
+    color: #112a46;
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    margin: 0;
+    /* justify-content: center; */
+}
+
+/*----------- MAIN --------------*/
+main {
+    padding: 0 2%;
+    min-height: 20rem;
+}
+
+/* ---------- FORM STYLING ------------ */
+form fieldset {
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+form label {
+    display: block;
+    padding-top: 1rem;
+    color: black;
+    font-size: 0.9rem;
+}
+
+form div {
+    padding-top: 1rem;
+    /* color: #445ba9; */
+    font-size: 0.9rem;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form input[type="url"],
+form input[type="date"],
+form select,
+form textarea {
+    background-color: #eee;
+    display: block;
+    border: solid 1px #999;
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: #555;
+    width: 100%;
+    max-width: 400px;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+form input[type="submit"] {
+    border: none;
+    background-image: linear-gradient(#9c2c13, #6f200e);
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.8rem;
+    width: 96%;
+    max-width: 400px;
+    margin: -1rem 2% 2rem 2%;
+    box-shadow: 1px 1px 4px #999;
+    appearance: none;
+}
+
+form input:required {
+    border-right: solid 6px red;
+}
+
+form input:required:valid {
+    border-right: solid 6px green;
+}
+
+/*----------- FOOTER --------------*/
+footer {
+    background-color: #acc8e5;
+    color: #112a46;
+    padding: 0.5rem 2%;
+    text-align: center;
+}
+
 /* ------------ STARS ----------- */
 .stars {
     display: flex;
     align-items: center;
-    width: 160px;
+    width: 70%;
     flex-direction: row-reverse;
     justify-content: space-between;
-    margin: 40px auto;
+    /* margin: 1rem auto; */
+    margin-top: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0;
     position: relative;
 }
 /* hide the inputs */
@@ -23,13 +137,12 @@
 }
 /* give label a hover state */
 .stars label:hover {
-    color: #ff69b4;
+    color: #ffc000;
     transition: 0.2s ease;
 }
 .stars label:active::before {
     transform: scale(1.1);
 }
-
 /* set shape of unselected label */
 .stars label::before {
     content: "\2606";
@@ -41,7 +154,6 @@
 .stars input:checked ~ label:before {
     content: "\2605";
 }
-
 @-moz-document url-prefix() {
     .stars input:checked ~ label:before {
         font-size: 36px;
