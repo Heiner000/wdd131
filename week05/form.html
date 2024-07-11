@@ -42,9 +42,28 @@
             </fieldset>
 
             <fieldset>
-                <div>Date of Installation</div>
-
+                <label>Date of Installation <input type="date" name="date" id="date"></label>
             </fieldset>
+
+            <fieldset>
+                <div>Useful Features</div>
+                <label><input type="checkbox" name="durability" id="durability" value="durability">Durability</label>
+                <label><input type="checkbox" name="ease" id="ease" value="ease">Ease of Use</label>
+                <label><input type="checkbox" name="performance" id="performance"
+                        value="performance">Performance</label>
+                <label><input type="checkbox" name="design" id="design" value="design">Design</label>
+            </fieldset>
+
+            <fieldset>
+                <div>Written Review <span class="optional">(Optional)</span></div>
+                <textarea name="text-review" id="text-review"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <div>Your Name <span class="optional">(Optional)</span></div>
+                <input type="text" name="username" id="username">
+            </fieldset>
+
         </form>
     </main>
 
