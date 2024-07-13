@@ -110,7 +110,7 @@ footer {
 }
 
 .required {
-    color: red;
+    color: #940000;
     margin: 0;
     font-size: 0.75rem;
 }
@@ -129,12 +129,14 @@ footer {
     margin-bottom: 0;
     position: relative;
 }
+
 /* hide the inputs */
 .stars input {
     display: none;
 }
+
 /* set properties of all labels */
-.stars > label {
+.stars>label {
     width: 30px;
     height: 30px;
     font-family: Arial;
@@ -142,14 +144,17 @@ footer {
     transition: 0.2s ease;
     color: orange;
 }
+
 /* give label a hover state */
 .stars label:hover {
     color: #ffc000;
     transition: 0.2s ease;
 }
+
 .stars label:active::before {
     transform: scale(1.1);
 }
+
 /* set shape of unselected label */
 .stars label::before {
     content: "\2606";
@@ -157,12 +162,14 @@ footer {
     top: 0px;
     line-height: 26px;
 }
+
 /* set full star shape for checked label and those that come after it */
-.stars input:checked ~ label:before {
+.stars input:checked~label:before {
     content: "\2605";
 }
+
 @-moz-document url-prefix() {
-    .stars input:checked ~ label:before {
+    .stars input:checked~label:before {
         font-size: 36px;
         line-height: 21px;
     }
