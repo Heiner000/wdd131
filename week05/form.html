@@ -20,16 +20,18 @@
     </header>
 
     <main>
+        <div class="required">Required inputs marked with asterisk: (*).</div>
         <form action="review.html" method="get">
             <fieldset>
-                <label>Product Name: <select name="product-name" id="" required>
-                        <option value="">Select a Product... &#9662;</option>
+                <label>Product Name: <span class="required">*</span> <select name="product-list" id="product-list"
+                        required>
+                        <option value="">Select a Product...</option>
                         <!-- rest of the options are rendered via JS -->
                     </select></label>
             </fieldset>
 
             <fieldset>
-                <div>Overall Rating:</div>
+                <div>Overall Rating: <span class="required">*</span></div>
                 <div class="stars">
                     <input type="radio" id="fivestar" name="stars" value="5" required><label for="fivestar"></label>
                     <input type="radio" id="fourstar" name="stars" value="4" required><label for="fourstar"></label>
@@ -40,11 +42,11 @@
             </fieldset>
 
             <fieldset>
-                <label>Date of Installation <input type="date" name="date" id="date"></label>
+                <label>Date of Installation: <input type="date" name="date" id="date"></label>
             </fieldset>
 
             <fieldset>
-                <div>Useful Features</div>
+                <div>Useful Features: </div>
                 <label><input type="checkbox" name="durability" id="durability" value="durability">Durability</label>
                 <label><input type="checkbox" name="ease" id="ease" value="ease">Ease of Use</label>
                 <label><input type="checkbox" name="performance" id="performance"
@@ -53,12 +55,12 @@
             </fieldset>
 
             <fieldset>
-                <div>Written Review <span class="optional">(Optional)</span></div>
+                <div>Written Review: <span class="optional">(Optional)</span></div>
                 <textarea name="text-review" id="text-review"></textarea>
             </fieldset>
 
             <fieldset>
-                <div>Your Name <span class="optional">(Optional)</span></div>
+                <div>Your Name: <span class="optional">(Optional)</span></div>
                 <input type="text" name="username" id="username">
             </fieldset>
 

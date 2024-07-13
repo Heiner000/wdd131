@@ -34,3 +34,5 @@ The user name entry is optional.
 Form Submission Button
 Use a input of type submit with an appropriate value that indicates the form action purpose.
 
+// Use JavaScript to populate the Product Name options where the array's name field is used for the select option display and the array's id is used for the value field.
+// Use localStorage to keep track of the number of reviews completed by the user client by adding a counter to the form submission review.html page. Every time that page is loaded successfully upon form submission, add one to the counter.

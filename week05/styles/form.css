@@ -94,6 +94,7 @@ form input[type="submit"] {
 
 form input:required {
     border-right: solid 6px red;
+    /* background-color: red; */
 }
 
 form input:required:valid {
@@ -106,6 +107,12 @@ footer {
     color: #112a46;
     padding: 0.5rem 2%;
     text-align: center;
+}
+
+.required {
+    color: red;
+    margin: 0;
+    font-size: 0.75rem;
 }
 
 /* ------------ STARS ----------- */
