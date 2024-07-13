@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.dark-text {
+    color: black;
+}
+
+.light-text {
+    color: white;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    color: #2B6F8A;
+}
+
+section {
+    margin: 1.5rem;
+}
+
+.color-schema {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-sample {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 1rem;
+}
+
+.color-sample p {
+    /* display: flex;
+    justify-content: space-around; */
+    padding: 1rem;
+}
