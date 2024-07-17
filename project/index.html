@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FitForge - Your personalized workout planner featuring progressive overload">
+    <meta name="author" content="Garrett Heiner">
+
+    <title>FitForge | Home</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <script src="/scripts/getdates.js" defer></script>
+    <script src="scripts/main.js" defer></script>
+
+</head>
+
+<body>
+    <header>
+        <img src="/images/FitForgeSVG.svg" alt="FitForge Logo" class="logo">
+        <h1 style="color: var(--bcakground-color);">FitForge</h1>
+        <a href="#" id="menu"></a>
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html" id="home">Home</a></li>
+                <li><a href="workout-planner.html" id="workout-planner">Workout Planner</a></li>
+                <li><a href="exercise-library.html" id="exercise-library">Exercise Library</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Forge Your Fitness with FitForge</h1>
+            <p>Create personalized workout plans with progressive overload to achieve your fitness goals.</p>
+            <a href="workout-planner.html" class="button">Start Your Workout Plan</a>
+        </section>
+
+
+        <section class="progressive-overload">
+            <h2>What is Progressive Overload?</h2>
+            <p>Progressive overload is the gradual increase of weight, frequency, or number of repetitions in your
+                strength training routine. This approach...</p>
+            <h3>Benefits of Progressive Overload</h3>
+            <ul>
+                <li>Continuous muscle growth and strength gains</li>
+                <li>Prevents plateaus in your fitness journey</li>
+                <li>Improves overall performance and endurance</li>
+            </ul>
+            <h3>How FitForge Implements Progressive Overload</h3>
+            <p>FitForge automatically calculates and suggests incremental increases in your workout routine, ensuring
+                you're always challenging yourself and making progress.</p>
+        </section>
+
+        <section class="how-to-use">
+            <h2>How to Use FitForge</h2>
+            <h3>Using the Workout Planner</h3>
+            <ol>
+                <li>Select your available equipment</li>
+                <li>Choose your fitness level and workout duration</li>
+                <li>Pick your target muscle groups</li>
+                <li>Generate your personalized workout plan</li>
+            </ol>
+            <h3>Exploring the Exercise Library</h3>
+            <p>Our comprehensive Exercise Library provides detailed information on a wide range of exercises. Use it to
+                learn proper form, discover new exercises, and understand which muscle groups each exercise targets.</p>
+            <a href="exercise-library.html" class="button">Explore Exercise Library</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>©<span id="current-year"> FitForge. All rights reserved.</span> | Garrett Heiner | Arizona</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

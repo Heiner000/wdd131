@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FitForge - Create your personalized workout plan.">
+    <meta name="author" content="Garrett Heiner">
+
+    <title>FitForge | Workout Planner</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <script src="/scripts/getdates.js" defer></script>
+    <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="/images/FitForgeSVG.svg" alt="FitForge Logo" class="logo">
+        <h1 style="color: var(--bcakground-color);">FitForge</h1>
+        <a href="#" id="menu"></a>
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html" id="home">Home</a></li>
+                <li><a href="workout-planner.html" id="workout-planner">Workout Planner</a></li>
+                <li><a href="exercise-library.html" id="exercise-library">Exercise Library</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Workout Planner</h1>
+
+        <section id="workout-generator-form">
+            <h2>Create Your Workout Plan</h2>
+            <form id="planner-form">
+                <fieldset>
+                    <legend>Available Equipment</legend>
+                    <!-- checkboxes will be dynamically populated w/ JS -->
+                </fieldset>
+
+                <fieldset>
+                    <legend>Fitness Level</legend>
+                    <select name="fitness-level" id="fitness-level" required>
+                        <option value="">Select your fitness level...</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Workout Duration</legend>
+                    <label><input type="number" id="workout-duration" name="workout-duration" min="15" max="120"
+                            steps="15" required>
+                        minutes</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Target Muscle Groups</legend>
+                    <!-- checkboxes dynamically populated -->
+                </fieldset>
+
+                <input type="submit" value="Post Review">
+            </form>
+        </section>
+
+        <section id="generated-plan" style="display: none;">
+            <h2>Your Personalized Workout Plan</h2>
+            <div id="plan-content">
+                <!-- dynamically generated workout plan -->
+            </div>
+            <button id="save-plan">Save Workout Plan</button>
+            <button id="print-plan">Print Workout Plan</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>©<span id="current-year"> FitForge. All rights reserved.</span> | Garrett Heiner | Arizona</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>
