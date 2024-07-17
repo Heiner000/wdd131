@@ -94,12 +94,8 @@ input[type="checkbox"] {
 }
 
 form input[type="text"],
-form input[type="tel"],
-form input[type="email"],
-form input[type="url"],
-form input[type="date"],
-form select,
-form textarea {
+form input[type="number"],
+form select {
     background-color: #eee;
     display: block;
     border: solid 1px #999;
