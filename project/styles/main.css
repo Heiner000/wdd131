@@ -172,6 +172,25 @@ footer {
     gap: 1rem;
 }
 
+.exercise-item {
+    background-color: white;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+    padding: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.exercise-item:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.exercise-item h3 {
+    margin-top: 0;
+}
+
+/************ EXERCISE ITEM MODALS *************/
+
 /* Anchor tags styled as buttons */
 .button {
     display: inline-block;
