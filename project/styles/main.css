@@ -64,13 +64,6 @@ main {
     padding: 2rem;
 }
 
-#planner-form {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
 fieldset {
     border: 1px solid var(--secondary-color);
     border-radius: 6px;
@@ -130,6 +123,53 @@ form input:required {
 
 form input:required:valid {
     border-right: solid 6px green;
+}
+
+footer {
+    background-color: #acc8e5;
+    color: #112a46;
+    padding: 0.5rem 2%;
+    text-align: center;
+}
+
+/******** WORKOUT PLANNER ******/
+#planner-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/******** EXERCISE LIBRARY ******/
+#search-filter {
+    margin-bottom: 2rem;
+}
+
+#exercise-search {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+}
+
+#filters {
+    display: flex;
+    gap: 1rem;
+}
+
+#equipment-filter,
+#muscle-group-filter {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+}
+
+#exercise-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
 }
 
 /* Anchor tags styled as buttons */

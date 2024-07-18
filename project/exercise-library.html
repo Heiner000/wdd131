@@ -17,6 +17,7 @@
 
     <script src="/scripts/getdates.js" defer></script>
     <script src="scripts/main.js" defer></script>
+    <script src="scripts/library.js" defer></script>
 </head>
 
 <body>
@@ -37,16 +38,21 @@
         <h1>Exercise Library</h1>
 
         <section id="search-filter">
-            <label>Exercises: <input type="text" name="" id="exercise-search" placeholder="Search exercises..."></label>
+            <label>Exercises: <input type="text" name="exercise-search" id="exercise-search"
+                    placeholder="Search exercises..."></label>
             <div id="filters">
                 <select name="equipment-filter" id="equipment-filter">
                     <option value="">All Equipment</option>
                     <!-- load other options dynamically? -->
                 </select>
 
-                <select name="muscle-group-filter" id="muscle-group-filter">
+                <select name="muscle-filter" id="muscle-filter">
                     <option value="">All Muscle Groups</option>
                     <!-- load other options dynamically -->
+                </select>
+
+                <select name="difficulty-filter" id="difficulty-filter">
+                    <option value="">All Levels</option>
                 </select>
             </div>
         </section>
@@ -60,6 +66,21 @@
         <p>©<span id="current-year"> FitForge. All rights reserved.</span> | Garrett Heiner | Arizona</p>
         <p id="lastModified"></p>
     </footer>
+
+    <div class="modal" id="exercise-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-exercise-name"></h2>
+            <div id="modal-exercise-details">
+                <p id="modal-level"></p>
+                <p id="modal-equipment"></p>
+                <p id="modal-primary-muscles"></p>
+                <p id="modal-secondary-muscles"></p>
+                <h3>Instructions:</h3>
+                <ol id="modal-instructions"></ol>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
