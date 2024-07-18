@@ -126,8 +126,9 @@ form input:required:valid {
 }
 
 footer {
-    background-color: #acc8e5;
-    color: #112a46;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin-top: 2rem;
     padding: 0.5rem 2%;
     text-align: center;
 }
@@ -175,7 +176,7 @@ footer {
 .exercise-item {
     background-color: white;
     border: 2px solid var(--secondary-color);
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 1rem;
     transition: box-shadow 0.3s ease;
 }
@@ -190,6 +191,41 @@ footer {
 }
 
 /************ EXERCISE ITEM MODALS *************/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: var(--accent-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-color);
+    text-decoration: none;
+}
 
 /* Anchor tags styled as buttons */
 .button {
@@ -217,8 +253,30 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+    }
+
+    #filters {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+
     main {
         padding: 1rem;
+    }
+
+    input,
+    select {
+        height: 2rem;
     }
 
     .button {
