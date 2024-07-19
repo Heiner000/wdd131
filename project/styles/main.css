@@ -3,49 +3,70 @@
     --secondary-color: #c1d8fa;
     --background-color: #f4f4f4;
     --text-color: #333333;
-    --accent-color: #e74c3c;
+    --accent-color: #8b0000;
+    --heading-font: "Montserrat", sans-serif;
+    --body-font: "Open Sans", sans-serif;
 }
 
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--body-font);
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
 }
 
 h1,
 h2,
 h3 {
-    font-family: "Montserrat", sans-serif;
-    color: var(--primary-color);
+    font-family: var(--heading-font);
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
 }
 
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/********** HEADER STYLES ***********/
 header {
+    position: relative;
     background-color: var(--primary-color);
     color: white;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+#menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--background-color);
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .logo {
-    height: 75px;
+    max-width: 100px;
+    height: auto;
     background-color: white;
 }
 
 nav ul {
     list-style-type: none;
-    padding: 0;
     display: flex;
+    flex-wrap: wrap;
 }
 
 nav ul li {
@@ -54,16 +75,79 @@ nav ul li {
 
 nav ul li a {
     color: white;
-    text-decoration: none;
     font-weight: bold;
 }
 
+a:hover {
+    color: var(--secondary-color);
+}
+
+.active {
+    position: relative;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+/*********** MAIN CONTENT ************/
 main {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
 }
 
+.hero {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    color: var(--primary-color);
+}
+
+.tip {
+    padding: 0.5rem 1rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.progressive-overload,
+.how-to-use {
+    margin-bottom: 2rem;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    margin-top: 2rem;
+    padding: 0.5rem 2%;
+    text-align: center;
+}
+
+/********** WORKOUT PLANNER ***********/
 fieldset {
     border: 1px solid var(--secondary-color);
     border-radius: 6px;
@@ -125,15 +209,6 @@ form input:required:valid {
     border-right: solid 6px green;
 }
 
-footer {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    margin-top: 2rem;
-    padding: 0.5rem 2%;
-    text-align: center;
-}
-
-/******** WORKOUT PLANNER ******/
 #planner-form {
     background-color: white;
     padding: 2rem;
@@ -228,9 +303,9 @@ footer {
 }
 
 /* Anchor tags styled as buttons */
+/*
 .button {
     display: inline-block;
-    /* font-size: 1.75rem; */
     padding: 1rem 1.25rem;
     background-color: var(--primary-color);
     color: white;
@@ -245,20 +320,61 @@ footer {
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }
-
-.button:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
+*/
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    #menu {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .navigation {
+        display: none;
+        width: 100%;
+        background-color: var(--primary-color);
+    }
+
+    .navigation.show {
+        display: block;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation ul li {
+        margin: 0.5rem 0;
+    }
+
+    .navigation a {
+        display: block;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     header {
         flex-direction: column;
+        text-align: center;
     }
 
     nav ul {
         margin-top: 1rem;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 0.5rem;
+    }
+
+    .hero,
+    .progressive-overload,
+    .how-to-use {
+        padding: 1rem;
     }
 
     #filters {
@@ -270,16 +386,23 @@ footer {
         margin: 5% auto;
     }
 
-    main {
-        padding: 1rem;
-    }
-
     input,
     select {
         height: 2rem;
     }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
 
     .button {
-        /* font-size: 1.75rem; */
+        display: inline-block;
+        width: 100%;
     }
 }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let exercises = [];
     let currentPage = 1;
-    const exercisesPerPage = 10;
+    const exercisesPerPage = 11;
 
     // Fetch exercises from JSON file
     fetch("./data/exercises.json")

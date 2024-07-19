@@ -7,9 +7,20 @@ hambutton.addEventListener("click", (e) => {
     hambutton.classList.toggle("show");
 });
 
-function toggleActive(element) {
-    document.querySelectorAll(".navigation a").forEach((link) => {
-        link.classList.remove("active");
-    });
-    element.classList.add("active");
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+
+    const currentYear = today.getFullYear();
+
+    const lastModified = new Date(document.lastModified);
+
+    const yearSpan = document.getElementById("current-year");
+    if (yearSpan) {
+        yearSpan.textContent = currentYear;
+    }
+
+    const lastModifiedP = document.getElementById("lastModified");
+    if (lastModifiedP) {
+        lastModifiedP.textContent = `Last Modified: ${lastModified}`;
+    }
+});

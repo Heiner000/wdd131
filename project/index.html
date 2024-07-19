@@ -15,19 +15,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&family=Open+Sans&display=swap"
         rel="stylesheet">
 
-    <script src="/scripts/getdates.js" defer></script>
     <script src="scripts/main.js" defer></script>
+    <script src="scripts/home.js" defer></script>
 
 </head>
 
 <body>
     <header>
-        <img src="/images/FitForgeSVG.svg" alt="FitForge Logo" class="logo">
-        <h1 style="color: var(--bcakground-color);">FitForge</h1>
-        <a href="#" id="menu"></a>
+        <a href="index.html" id="home"><img src="/images/FitForgeSVG.svg" alt="FitForge Logo" class="logo"
+                loading="lazy"> </a>
+        <h1>FitForge</h1>
+        <a href="#" id="menu" aria-label="Toggle Menu">☰</a>
         <nav class="navigation">
             <ul>
-                <li><a href="index.html" id="home">Home</a></li>
+                <li><a href="index.html" id="home" class="active">Home</a></li>
                 <li><a href="workout-planner.html" id="workout-planner">Workout Planner</a></li>
                 <li><a href="exercise-library.html" id="exercise-library">Exercise Library</a></li>
             </ul>

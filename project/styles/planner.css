@@ -1,0 +1,80 @@
+#plan-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: dotted 3px chartreuse;
+}
+
+#plan-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    border: dotted 3px chartreuse;
+}
+
+#plan-content th,
+#plan-content td {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+#plan-content th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#plan-content tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.workout-advice {
+    background-color: var(--background-color);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.overload-note {
+    font-style: italic;
+    color: #6c757d;
+}
+
+@media screen and (max-width: 600px) {
+    #plan-content table,
+    #plan-content thead,
+    #plan-content tbody,
+    #plan-content th,
+    #plan-content td,
+    #plan-content tr {
+        display: block;
+    }
+
+    #plan-content thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #plan-content tr {
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+
+    #plan-content td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    #plan-content td:before {
+        position: absolute;
+        top: 0.6rem;
+        left: 0.5rem;
+        width: 45%;
+        padding-right: 1rem;
+        white-space: nowrap;
+        content: attr(data-label);
+        font-weight: bold;
+    }
+}
