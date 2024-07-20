@@ -94,198 +94,213 @@ function populateCheckboxes(fieldset, items, type) {
 }
 
 function generateWorkoutPlan() {
-    const equipment = getSelectedValues("equipment");
-    const fitnessLevel = document.getElementById("fitness-level").value;
-    const duration = parseInt(
-        document.getElementById("workout-duration").value
-    );
-    const targetMuscles = getSelectedValues("muscle");
+    return new Promise((resolve, reject) => {
+        // retrieve user inputs
+        const equipment = getSelectedEquipment();
+        const fitnessLevel = document.getElementById("fitness-level").value;
+        const duration = parseInt(
+            document.getElementById("workout-duration").value
+        );
+        const targetMuscles = getSelectedMuscles();
 
-    // fetch exercises
-    return fetch("data/exercises.json")
-        .then((response) => response.json())
-        .then((data) => {
-            const exercises = data.exercises;
-
-            // filter exercises based on user input
-            const filteredExercises = exercises.filter(
-                (exercise) =>
-                    equipment.includes(exercise.equipment) &&
-                    exercise.level === fitnessLevel &&
-                    targetMuscles.some(
-                        (muscle) =>
-                            exercise.primaryMuscles.includes(muscle) ||
-                            exercise.secondaryMuscles.includes(muscle)
-                    )
-            );
-
-            // ************* determine the number of exercises based on duration
-            const exerciseCount = Math.floor(duration / 15); // Assuming each exercise takes about 15 minutes
-
-            // select exercises
-            const selectedExercises = selectExercises(
-                filteredExercises,
-                exerciseCount,
-                targetMuscles
-            );
-
-            // generate plan w/ progressive overload
-            const plan = generatePlanWithProgressiveOverload(
-                selectedExercises,
-                fitnessLevel
-            );
-            return plan;
+        console.log("~~ USER INPUTS:", {
+            equipment,
+            fitnessLevel,
+            duration,
+            targetMuscles,
         });
-}
 
-function getSelectedValues(name) {
-    return Array.from(
-        document.querySelectorAll(`input[name="${name}"]:checked`)
-    ).map((input) => input.value);
-}
+        // fetch exercise data
+        fetch("data/exercises.json")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("~~ FETCHED EXERCISE DATA: ", data);
 
-function selectExercises(exercises, count, targetMuscles) {
-    let selected = [];
-    let remainingMuscles = [...targetMuscles];
+                // filter exercises based on user inputs
+                let filteredExercises = filterExercises(
+                    data.exercises,
+                    equipment,
+                    fitnessLevel,
+                    targetMuscles
+                );
+                console.log("~~ FILTERED EXERCISES: ", filteredExercises);
 
-    while (selected.length < count && exercises.length > 0) {
-        // prioritize exercises for remaining muscles
-        let priorityExercises = exercises.filter((ex) =>
-            ex.primaryMuscles.some((muscle) =>
-                remainingMuscles.includes(muscle)
-            )
-        );
+                // group exercises by muscle
+                let groupedExercises =
+                    groupExercisesByMuscle(filteredExercises);
+                console.log("~~ GROUPED EXERCISES: ", groupedExercises);
 
-        if (priorityExercises.length === 0) {
-            priorityExercises = exercises;
-        }
+                // select exercises for the workout
+                let selectedExercises = selectExercises(
+                    groupedExercises,
+                    duration,
+                    fitnessLevel
+                );
+                console.log("~~ SELECTED EXERCISES: ", selectedExercises);
 
-        const randomIndex = Math.floor(
-            Math.random() * priorityExercises.length
-        );
-        const exercise = priorityExercises[randomIndex];
+                // generate the workout plan
+                let workoutPlan = createWorkoutPlan(
+                    selectedExercises,
+                    fitnessLevel
+                );
+                console.log("~~ GENERATED WORKOUT PLAN: ", workoutPlan);
 
-        selected.push(exercise);
-        exercises = exercises.filter((ex) => ex !== exercise);
-
-        // update remaining muscles
-        remainingMuscles = remainingMuscles.filter(
-            (muscle) => !exercise.primaryMuscles.includes(muscle)
-        );
-
-        if (remainingMuscles.length === 0) {
-            remainingMuscles = [...targetMuscles];
-        }
-    }
-    return selected;
-}
-
-function generatePlanWithProgressiveOverload(exercises, fitnessLevel) {
-    return exercises.map((exercise) => {
-        let sets, reps;
-        switch (fitnessLevel) {
-            case "beginner":
-                sets = 3;
-                reps = "8 - 12";
-                break;
-            case "intermediate":
-                sets = 4;
-                reps = "6 - 10";
-                break;
-            case "advanced":
-                sets = 5;
-                reps = "4 - 8";
-                break;
-        }
-
-        return {
-            name: exercise.name,
-            equipment: exercise.equipment,
-            sets: sets,
-            reps: reps,
-            progressionStrategy: getProgressionStrategy(exercise, fitnessLevel),
-        };
+                resolve(workoutPlan);
+            })
+            .catch((err) => reject(err));
     });
 }
 
-function getProgressionStrategy(exercise, fitnessLevel) {
-    // ********* simple strategy, may need to improve
+// get selected equipment from form
+function getSelectedEquipment() {
+    const equipmentCheckboxes = document.querySelectorAll(
+        'input[name="equipment"]:checked'
+    );
+    const selectedEquipment = Array.from(equipmentCheckboxes).map(
+        (checkbox) => checkbox.value
+    );
+
+    // if no equipment selected, default to bodyweight exercises
+    if (selectedEquipment.length === 0) {
+        selectedEquipment.push("bodyweight");
+    }
+    return selectedEquipment;
+}
+
+// get selected muscle groups from the form
+function getSelectedMuscles() {
+    const muscleCheckboxes = document.querySelectorAll(
+        "input[name='muscle']:checked"
+    );
+    return Array.from(muscleCheckboxes).map((checkbox) => checkbox.value);
+}
+
+// filter exercises
+function filterExercises(exercises, equipment, fitnessLevel, targetMuscles) {
+    return exercises.filter(
+        (exercise) =>
+            equipment.includes(exercise.equipment) &&
+            exercise.level === fitnessLevel &&
+            targetMuscles.some(
+                (muscle) =>
+                    exercise.primaryMuscles.includes(muscle) ||
+                    exercise.secondaryMuscles.includes(muscle)
+            )
+    );
+}
+
+// group exercises by primary muscle
+function groupExercisesByMuscle(exercises) {
+    return exercises.reduce((groups, exercise) => {
+        const primaryMuscle = exercise.primaryMuscles[0];
+        if (!groups[primaryMuscle]) {
+            groups[primaryMuscle] = [];
+        }
+        groups[primaryMuscle].push(exercise);
+        return groups;
+    }, {});
+}
+
+// select exercises based on duration & fitness level
+function selectExercises(groupedExercises, duration, fitnessLevel) {
+    // target all selected muscle groups
+    const exercisesPerMuscle = determineExercisesPerMuscle(
+        duration,
+        fitnessLevel
+    );
+    const selectedExercises = [];
+    const muscleGroups = Object.keys(groupedExercises);
+
+    // ensure at least 1 exercise per selected muscle group
+    muscleGroups.forEach((muscle) => {
+        const muscleExercises = groupedExercises[muscle];
+        const exerciseCount = Math.min(
+            exercisesPerMuscle,
+            muscleExercises.length
+        );
+
+        for (let i = 0; i < exerciseCount; i++) {
+            const randomIndex = Math.floor(
+                Math.random() * muscleExercises.length
+            );
+            selectedExercises.push(muscleExercises[randomIndex]);
+            muscleExercises.splice(randomIndex, 1);
+        }
+    });
+
+    // if we have mroe time, add more exercises
+    while (
+        selectedExercises.length < duration / 5 &&
+        muscleGroups.some((muscle) => groupedExercises[muscle].length > 0)
+    ) {
+        const availableMuscles = muscleGroups.filter(
+            (muscle) => groupedExercises[muscle].length > 0
+        );
+        const randomMuscle =
+            availableMuscles[
+                Math.floor(Math.random() * availableMuscles.length)
+            ];
+        const randomIndex = Math.floor(
+            Math.random() * groupedExercises[randomMuscle].length
+        );
+
+        selectExercises.push(groupedExercises[randomMuscle][randomIndex]);
+        groupedExercises[randomMuscle].splice(randomIndex, 1);
+    }
+    return selectExercises;
+}
+
+function determineExercisesPerMuscle(duration, fitnessLevel) {
+    // base number of exercises per muscle group
+    let baseExercises;
     switch (fitnessLevel) {
         case "beginner":
-            return "Increase weight by 2.5-5% or 1-2 reps each week.";
+            baseExercises = 1;
+            break;
         case "intermediate":
-            return "Increase weight by 5-7.5% or 2-3 reps every 1-2 weeks.";
+            baseExercises = 2;
+            break;
         case "advanced":
-            return "Increase weight by 2.5-5% or 1-2 reps every 2-3 weeks";
+            baseExercises = 3;
+            break;
+        default:
+            baseExercises = 1;
+    }
+
+    // adjust based on workout duration
+    if (duration <= 30) {
+        return Math.max(1, baseExercises - 1);
+    } else if (duration >= 60) {
+        return baseExercises + 1;
+    } else {
+        console.log("~~ BASE # EXERCISES PER MUSCLE: ", baseExercises);
+        return baseExercises;
     }
 }
 
-function displayWorkoutPlan(plan) {
-    if (!Array.isArray(plan)) {
-        console.error("Invalid plan format: ", plan);
-        console.log("Error in the displayWorkoutPlan function");
-        return;
-    }
-    const planContent = document.getElementById("plan-content");
-    planContent.innerHTML = ""; // clear previous content
+// compile the workout plan
+function createWorkoutPlan(selectedExercises, fitnessLevel) {
+    // plan the exercises, sets, reps, rest, and progression
+}
 
-    // create a title for the plan
-    const title = document.createElement("h3");
-    title.textContent = "Your Personalized Generated Workout Plan";
-    planContent.appendChild(title);
+// determine the number of sets
+function determineSets(fitnessLevel) {
+    // base it on fitness level? category?
+}
 
-    // create a table for the exercises
-    const table = document.createElement("table");
-    table.innerHTML = `
-    <thead>
-        <tr>
-            <th>Exercise</th>
-            <th>Equipment</th>
-            <th>Sets</th>
-            <th>Reps</th>
-            <th>Progression Strategy</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>`;
+// determine the number of reps
+function determineReps(fitnessLevel, category) {
+    // reps based on fitness level & exercise category
+}
 
-    // populate the table with exercises
-    const tbody = table.querySelector("tbody");
-    plan.forEach((exercise) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td data-label="Exercise">${exercise.name}</td>
-            <td data-label="Equipment">${exercise.equipment}</td>
-            <td data-label="Sets">${exercise.sets}</td>
-            <td data-label="Reps">${exercise.reps}</td>
-            <td data-label="Progression">${exercise.progressionStrategy}</td>
-            `;
-        tbody.appendChild(row);
-    });
+// determine the rest periods
+function determineRest(fitnessLevel, category) {
+    // ****should maybe be based on reps & category?
+}
 
-    planContent.appendChild(table);
-
-    // add general workout advice
-    const advice = document.createElement("div");
-    advice.classList.add("workout-advice");
-    advice.innerHTML = `
-        <h4>General Workout Advice:</h4>
-        <ul>
-            <li>Warm up properly before starting your workout.</li>
-            <li>Stay hydrated throughout your session.</li>
-            <li>Focus on proper form to prevent injuries and maximize results.</li>
-            <li>Cool down and stretch after your workout.</li>
-            <li>Rest adequately between workouts to allow for recovery.</li>
-        </ul>
-    `;
-    planContent.appendChild(advice);
-
-    // add a note about progressive overload
-    const overloadNote = document.createElement("p");
-    overloadNote.classList.add("overload-note");
-    overloadNote.textContent =
-        "Remember to apply the progression strategy to each session.";
-    planContent.appendChild(overloadNote);
+// determine progression strat
+function determineProgression(fitnessLevel) {
+    // progression based on strategy
 }
 
 function savePlan() {

@@ -1,0 +1,920 @@
+const exercises = [
+    {
+        id: 1,
+        name: "Dumbbell Bicep Curl",
+        force: "pull",
+        level: "beginner",
+        mechanic: "isolation",
+        equipment: "dumbbell",
+        primaryMuscles: ["biceps"],
+        secondaryMuscles: ["forearms"],
+        instructions: [
+            "Stand with dumbbells at your sides, palms facing forward.",
+            "Curl the weights to your shoulders, keeping elbows close to your body.",
+            "Slowly lower the dumbbells back to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 2,
+        name: "Dumbbell Chest Press",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["chest"],
+        secondaryMuscles: ["shoulders", "triceps"],
+        instructions: [
+            "Lie on a flat bench, holding dumbbells above your chest.",
+            "Lower the weights to your chest, keeping elbows at a 45-degree angle.",
+            "Press the dumbbells back up to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 3,
+        name: "Dumbbell Romanian Deadlift",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["hamstrings", "lower back"],
+        secondaryMuscles: ["glutes"],
+        instructions: [
+            "Stand with dumbbells in front of your thighs, feet hip-width apart.",
+            "Hinge at the hips, lowering the weights along your legs.",
+            "Keep your back straight and knees slightly bent.",
+            "Return to the starting position by extending your hips.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 4,
+        name: "Dumbbell Renegade Row",
+        force: "pull",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["back", "core"],
+        secondaryMuscles: ["shoulders", "triceps"],
+        instructions: [
+            "Start in a push-up position with hands on dumbbells.",
+            "Row one dumbbell to your hip while balancing on the other arm.",
+            "Lower the dumbbell and repeat on the other side.",
+            "Alternate sides for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 5,
+        name: "Dumbbell Lateral Raise",
+        force: "push",
+        level: "beginner",
+        mechanic: "isolation",
+        equipment: "dumbbell",
+        primaryMuscles: ["shoulders"],
+        secondaryMuscles: ["upper trapezius"],
+        instructions: [
+            "Stand with dumbbells at your sides, palms facing in.",
+            "Raise the weights out to the sides until parallel with the ground.",
+            "Lower the dumbbells back to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 6,
+        name: "Dumbbell Goblet Squat",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Hold a dumbbell vertically against your chest with both hands.",
+            "Squat down, keeping your chest up and knees in line with toes.",
+            "Push through your heels to return to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 7,
+        name: "Dumbbell Shoulder Press",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["shoulders"],
+        secondaryMuscles: ["triceps"],
+        instructions: [
+            "Sit or stand with dumbbells at shoulder level, palms facing forward.",
+            "Press the weights overhead until arms are fully extended.",
+            "Lower the dumbbells back to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 8,
+        name: "Dumbbell Lunges",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Stand with dumbbells at your sides.",
+            "Step forward into a lunge, lowering your back knee towards the ground.",
+            "Push off the front foot to return to the starting position.",
+            "Alternate legs for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 9,
+        name: "Dumbbell Bent-Over Row",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["back"],
+        secondaryMuscles: ["biceps", "shoulders"],
+        instructions: [
+            "Hinge at the hips, keeping your back straight and knees slightly bent.",
+            "Hold dumbbells hanging from your shoulders, palms facing in.",
+            "Row the weights to your hips, keeping elbows close to your body.",
+            "Lower the dumbbells and repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 10,
+        name: "Dumbbell Russian Twist",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "isolation",
+        equipment: "dumbbell",
+        primaryMuscles: ["abs"],
+        secondaryMuscles: ["obliques"],
+        instructions: [
+            "Sit on the floor, knees bent, feet lifted slightly.",
+            "Hold a dumbbell with both hands in front of your chest.",
+            "Lean back slightly, keeping your back straight.",
+            "Rotate your torso to one side, then the other.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 11,
+        name: "Dumbbell Tricep Extension",
+        force: "push",
+        level: "beginner",
+        mechanic: "isolation",
+        equipment: "dumbbell",
+        primaryMuscles: ["triceps"],
+        secondaryMuscles: [],
+        instructions: [
+            "Stand or sit holding a dumbbell with both hands above your head.",
+            "Lower the weight behind your head, bending at the elbows.",
+            "Extend your arms to return to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 12,
+        name: "Dumbbell Farmer's Walk",
+        force: "static",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["forearms", "trapezius"],
+        secondaryMuscles: ["core", "quadriceps"],
+        instructions: [
+            "Hold a heavy dumbbell in each hand at your sides.",
+            "Walk forward with short, quick steps.",
+            "Keep your shoulders back and core tight.",
+            "Continue for the desired distance or time.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 13,
+        name: "Dumbbell Bulgarian Split Squat",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Stand with one foot elevated behind you on a bench.",
+            "Hold dumbbells at your sides.",
+            "Lower your back knee towards the ground.",
+            "Push through your front heel to return to the starting position.",
+            "Complete reps, then switch legs.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 14,
+        name: "Dumbbell Plank Row",
+        force: "pull",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["back", "core"],
+        secondaryMuscles: ["shoulders", "triceps"],
+        instructions: [
+            "Start in a plank position with hands on dumbbells.",
+            "Row one dumbbell to your hip while balancing on the other arm.",
+            "Lower the dumbbell and repeat on the other side.",
+            "Alternate sides for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 15,
+        name: "Dumbbell Thrusters",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "dumbbell",
+        primaryMuscles: ["quadriceps", "shoulders"],
+        secondaryMuscles: ["glutes", "triceps"],
+        instructions: [
+            "Hold dumbbells at shoulder level, feet shoulder-width apart.",
+            "Squat down, keeping your chest up.",
+            "As you stand, press the dumbbells overhead.",
+            "Lower the weights back to your shoulders as you squat.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 16,
+        name: "Push-up",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["chest"],
+        secondaryMuscles: ["shoulders", "triceps"],
+        instructions: [
+            "Start in a plank position with hands slightly wider than shoulder-width.",
+            "Lower your body until your chest nearly touches the floor.",
+            "Push your body back up to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 17,
+        name: "Bodyweight Squat",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Stand with feet shoulder-width apart.",
+            "Lower your body as if sitting back into a chair.",
+            "Keep your chest up and knees over your toes.",
+            "Return to the starting position and repeat.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 18,
+        name: "Plank",
+        force: "static",
+        level: "beginner",
+        mechanic: "isolation",
+        equipment: "body only",
+        primaryMuscles: ["core"],
+        secondaryMuscles: ["shoulders", "back"],
+        instructions: [
+            "Start in a push-up position with forearms on the ground.",
+            "Keep your body in a straight line from head to heels.",
+            "Hold this position for the desired time.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 19,
+        name: "Lunges",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Stand with feet hip-width apart.",
+            "Step forward with one leg, lowering your hips until both knees are bent at 90-degree angles.",
+            "Push back to the starting position.",
+            "Repeat, alternating legs.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 20,
+        name: "Mountain Climbers",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["core"],
+        secondaryMuscles: ["shoulders", "hip flexors"],
+        instructions: [
+            "Start in a push-up position.",
+            "Bring one knee towards your chest, then quickly switch legs.",
+            "Continue alternating legs as if running in place.",
+            "Maintain a fast pace for the desired duration.",
+        ],
+        category: "cardio",
+    },
+    {
+        id: 21,
+        name: "Burpees",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["full body"],
+        secondaryMuscles: [],
+        instructions: [
+            "Start in a standing position.",
+            "Drop into a squat and place hands on the floor.",
+            "Kick feet back into a push-up position.",
+            "Perform a push-up, then jump feet back to hands.",
+            "Jump up with arms raised above your head.",
+            "Repeat for desired reps.",
+        ],
+        category: "cardio",
+    },
+    {
+        id: 22,
+        name: "Pull-up",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "pull-up bar",
+        primaryMuscles: ["back", "biceps"],
+        secondaryMuscles: ["shoulders", "core"],
+        instructions: [
+            "Hang from a pull-up bar with palms facing away from you.",
+            "Pull your body up until your chin is over the bar.",
+            "Lower yourself back down with control.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 23,
+        name: "Dips",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "parallel bars or sturdy chairs",
+        primaryMuscles: ["triceps", "chest"],
+        secondaryMuscles: ["shoulders"],
+        instructions: [
+            "Support yourself between parallel bars or chairs with straight arms.",
+            "Lower your body by bending your elbows.",
+            "Push back up to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 24,
+        name: "Russian Twists",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "isolation",
+        equipment: "body only",
+        primaryMuscles: ["obliques"],
+        secondaryMuscles: ["core"],
+        instructions: [
+            "Sit on the floor with knees bent and feet lifted slightly.",
+            "Lean back slightly, keeping your back straight.",
+            "Clasp your hands in front of you and rotate your torso from side to side.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 25,
+        name: "Jump Squats",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Start in a squat position with feet shoulder-width apart.",
+            "Jump explosively, extending your entire body.",
+            "Land softly back in the squat position.",
+            "Immediately repeat for desired reps.",
+        ],
+        category: "plyometrics",
+    },
+    {
+        id: 26,
+        name: "Pistol Squat",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Stand on one leg, extend the other leg in front of you.",
+            "Lower your body on the standing leg until your thigh is parallel to the ground.",
+            "Push back up to the starting position.",
+            "Complete reps, then switch legs.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 27,
+        name: "Handstand Push-up",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["shoulders", "triceps"],
+        secondaryMuscles: ["upper chest", "core"],
+        instructions: [
+            "Kick up into a handstand against a wall.",
+            "Lower your body by bending your elbows.",
+            "Push back up to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 28,
+        name: "L-Sit",
+        force: "static",
+        level: "advanced",
+        mechanic: "isolation",
+        equipment: "parallel bars or floor",
+        primaryMuscles: ["core", "hip flexors"],
+        secondaryMuscles: ["quadriceps", "shoulders"],
+        instructions: [
+            "Sit with legs extended and hands by your hips.",
+            "Press down and lift your entire body off the ground.",
+            "Keep your legs straight and parallel to the ground.",
+            "Hold this position for as long as possible.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 29,
+        name: "Muscle-up",
+        force: "pull",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "pull-up bar",
+        primaryMuscles: ["back", "chest", "triceps"],
+        secondaryMuscles: ["shoulders", "core"],
+        instructions: [
+            "Hang from a pull-up bar with a false grip.",
+            "Perform an explosive pull-up, bringing your chest to the bar.",
+            "As you reach the top, lean forward and push down on the bar.",
+            "Extend your arms to finish in a dip position above the bar.",
+            "Lower yourself back to the starting position.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 30,
+        name: "Plyometric Push-up",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "body only",
+        primaryMuscles: ["chest", "triceps"],
+        secondaryMuscles: ["shoulders"],
+        instructions: [
+            "Start in a push-up position.",
+            "Lower your body as in a regular push-up.",
+            "Push up explosively so your hands leave the ground.",
+            "Land softly and immediately go into the next repetition.",
+            "Repeat for desired reps.",
+        ],
+        category: "plyometrics",
+    },
+    {
+        id: 31,
+        name: "Barbell Back Squat",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves", "lower back"],
+        instructions: [
+            "Place the barbell on your upper back, resting on your shoulders.",
+            "Stand with feet shoulder-width apart.",
+            "Lower your body by bending your knees and hips, keeping your back straight.",
+            "Descend until thighs are parallel to the floor.",
+            "Push through your heels to return to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 32,
+        name: "Barbell Bench Press",
+        force: "push",
+        level: "beginner",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["chest"],
+        secondaryMuscles: ["shoulders", "triceps"],
+        instructions: [
+            "Lie on a flat bench, feet flat on the ground.",
+            "Grip the barbell slightly wider than shoulder-width.",
+            "Unrack the bar and lower it to your mid-chest.",
+            "Press the bar back up to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 33,
+        name: "Barbell Deadlift",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["lower back", "glutes", "hamstrings"],
+        secondaryMuscles: ["quadriceps", "forearms", "trapezius"],
+        instructions: [
+            "Stand with feet hip-width apart, barbell over mid-foot.",
+            "Bend at hips and knees to grip the bar with hands just outside legs.",
+            "Lift the bar by extending hips and knees, keeping your back straight.",
+            "Stand up straight, then lower the bar to the ground with control.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 34,
+        name: "Barbell Overhead Press",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["shoulders"],
+        secondaryMuscles: ["triceps", "upper chest"],
+        instructions: [
+            "Start with the barbell at shoulder height, hands slightly wider than shoulder-width.",
+            "Press the bar overhead until arms are fully extended.",
+            "Lower the bar back to shoulder height with control.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 35,
+        name: "Barbell Bent-Over Row",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["back"],
+        secondaryMuscles: ["biceps", "shoulders"],
+        instructions: [
+            "Bend at the hips until your upper body is nearly parallel to the floor.",
+            "Grip the barbell with hands shoulder-width apart.",
+            "Pull the bar to your lower chest, keeping elbows close to your body.",
+            "Lower the bar back to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 36,
+        name: "Barbell Romanian Deadlift",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["hamstrings", "lower back"],
+        secondaryMuscles: ["glutes"],
+        instructions: [
+            "Stand with feet hip-width apart, holding a barbell in front of your thighs.",
+            "Hinge at the hips, lowering the bar along your legs.",
+            "Keep your back straight and knees slightly bent.",
+            "Lower until you feel a stretch in your hamstrings.",
+            "Return to the starting position by extending your hips.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 37,
+        name: "Barbell Front Squat",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves", "core"],
+        instructions: [
+            "Rest the barbell on your front deltoids and collarbone.",
+            "Stand with feet shoulder-width apart.",
+            "Lower your body by bending knees and hips, keeping your back straight and elbows high.",
+            "Descend until thighs are parallel to the floor.",
+            "Push through your heels to return to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 38,
+        name: "Barbell Hip Thrust",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["glutes"],
+        secondaryMuscles: ["hamstrings", "quadriceps"],
+        instructions: [
+            "Sit on the ground with your upper back against a bench.",
+            "Place a barbell over your hips.",
+            "Plant your feet on the ground, hip-width apart.",
+            "Drive through your heels to lift your hips, squeezing your glutes at the top.",
+            "Lower your hips back to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 39,
+        name: "Barbell Lunges",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves"],
+        instructions: [
+            "Place a barbell on your upper back.",
+            "Step forward with one leg, lowering your hips until both knees are bent at 90-degree angles.",
+            "Push back to the starting position.",
+            "Repeat, alternating legs for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 40,
+        name: "Barbell Power Clean",
+        force: "pull",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["full body"],
+        secondaryMuscles: [],
+        instructions: [
+            "Start with the barbell on the floor, feet hip-width apart.",
+            "Bend at the hips and knees to grip the bar with hands shoulder-width apart.",
+            "Explosively extend hips and knees, shrugging shoulders at the top.",
+            "Pull yourself under the bar, catching it on your shoulders in a front rack position.",
+            "Stand up straight to complete the lift.",
+            "Lower the bar back to the starting position and repeat.",
+        ],
+        category: "olympic weightlifting",
+    },
+    {
+        id: 41,
+        name: "Barbell Good Morning",
+        force: "pull",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["hamstrings", "lower back"],
+        secondaryMuscles: ["glutes"],
+        instructions: [
+            "Place a barbell on your upper back.",
+            "Stand with feet shoulder-width apart, knees slightly bent.",
+            "Hinge at the hips, lowering your torso until it's nearly parallel to the floor.",
+            "Keep your back straight throughout the movement.",
+            "Return to the starting position by extending your hips.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 42,
+        name: "Barbell Push Press",
+        force: "push",
+        level: "intermediate",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["shoulders"],
+        secondaryMuscles: ["triceps", "upper chest", "legs"],
+        instructions: [
+            "Start with the barbell at shoulder height.",
+            "Slightly bend your knees, then explosively extend them.",
+            "Use this momentum to press the bar overhead until arms are fully extended.",
+            "Lower the bar back to shoulder height with control.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 43,
+        name: "Barbell Snatch",
+        force: "pull",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["full body"],
+        secondaryMuscles: [],
+        instructions: [
+            "Start with the barbell on the floor, feet hip-width apart.",
+            "Grip the bar wide, outside your legs.",
+            "Explosively extend hips and knees, shrugging shoulders at the top.",
+            "Pull yourself under the bar, catching it overhead with arms locked.",
+            "Stand up straight to complete the lift.",
+            "Lower the bar back to the starting position and repeat.",
+        ],
+        category: "olympic weightlifting",
+    },
+    {
+        id: 44,
+        name: "Zercher Squat",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["quadriceps", "glutes"],
+        secondaryMuscles: ["hamstrings", "calves", "core"],
+        instructions: [
+            "Cradle the barbell in the crook of your elbows, close to your chest.",
+            "Stand with feet shoulder-width apart.",
+            "Lower your body by bending knees and hips, keeping your back straight.",
+            "Descend until thighs are parallel to the floor.",
+            "Push through your heels to return to the starting position.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+    {
+        id: 45,
+        name: "Barbell Thruster",
+        force: "push",
+        level: "advanced",
+        mechanic: "compound",
+        equipment: "barbell",
+        primaryMuscles: ["quadriceps", "shoulders"],
+        secondaryMuscles: ["glutes", "triceps", "core"],
+        instructions: [
+            "Start with the barbell at shoulder height, in a front rack position.",
+            "Perform a front squat, lowering your body until thighs are parallel to the floor.",
+            "As you stand up, use the momentum to press the bar overhead.",
+            "Lower the bar back to shoulder height as you squat down again.",
+            "Repeat for desired reps.",
+        ],
+        category: "strength",
+    },
+];
+
+document.body.innerHTML = `
+    <form id="planner-form">
+        <fieldset>
+            <legend>Available Equipment</legend>
+            <label><input type="checkbox" name="equipment" value="dumbbell" id="equipment-dumbbell"> Dumbbell</label>
+        </fieldset>
+        <fieldset>
+            <legend>Fitness Level</legend>
+            <select name="fitness-level" id="fitness-level" required>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend>Workout Duration</legend>
+            <input type="number" id="workout-duration" name="workout-duration" min="15" max="120" step="15" required>
+        </fieldset>
+        <fieldset>
+            <legend>Target Muscle Groups</legend>
+            <label><input type="checkbox" name="muscle" value="biceps" id="muscle-biceps"> Biceps</label>
+            <label><input type="checkbox" name="muscle" value="chest" id="muscle-chest"> Chest</label>
+        </fieldset>
+        <input type="submit" value="Generate Workout">
+    </form>
+    <div id="plan-content"></div>
+    <button id="save-plan">Save Workout Plan</button>
+    <button id="print-plan">Print Workout Plan</button>
+`;
+
+document.getElementById("fitness-level").value = "beginner";
+document.getElementById("workout-duration").value = "30";
+document.getElementById("equipment-dumbbell").checked = true;
+document.getElementById("muscle-biceps").checked = true;
+document.getElementById("muscle-chest").checked = true;
+
+// Mock the fetch function to return the sample exercises data
+global.fetch = jest.fn(() =>
+    Promise.resolve({
+        json: () => Promise.resolve({ exercises }),
+    })
+);
+
+generateWorkoutPlan()
+    .then((plan) => {
+        console.log("Generated Plan:", plan);
+        displayWorkoutPlan(plan);
+    })
+    .catch((err) => {
+        console.error("Error:", err);
+    });
+
+function getSelectedEquipment() {
+    return [
+        ...document.querySelectorAll('input[name="equipment"]:checked'),
+    ].map((cb) => cb.value);
+}
+
+function getSelectedMuscles() {
+    return [...document.querySelectorAll('input[name="muscle"]:checked')].map(
+        (cb) => cb.value
+    );
+}
+
+function filterExercises(exercises, equipment, fitnessLevel, targetMuscles) {
+    return exercises.filter(
+        (exercise) =>
+            equipment.includes(exercise.equipment) &&
+            exercise.level === fitnessLevel &&
+            targetMuscles.some(
+                (muscle) =>
+                    exercise.primaryMuscles.includes(muscle) ||
+                    exercise.secondaryMuscles.includes(muscle)
+            )
+    );
+}
+
+function groupExercisesByMuscle(exercises) {
+    const grouped = {};
+    exercises.forEach((exercise) => {
+        exercise.primaryMuscles.forEach((muscle) => {
+            if (!grouped[muscle]) grouped[muscle] = [];
+            grouped[muscle].push(exercise);
+        });
+    });
+    return grouped;
+}
+
+function selectExercises(groupedExercises, duration, fitnessLevel) {
+    const selected = [];
+    for (const muscle in groupedExercises) {
+        const exercises = groupedExercises[muscle];
+        selected.push(...exercises.slice(0, duration / 10)); // Example logic
+    }
+    return selected;
+}
+
+function createWorkoutPlan(selectedExercises, fitnessLevel) {
+    return selectedExercises.map((exercise) => ({
+        name: exercise.name,
+        equipment: exercise.equipment,
+        primaryMuscles: exercise.primaryMuscles,
+        secondaryMuscles: exercise.secondaryMuscles,
+        instructions: exercise.instructions,
+    }));
+}
+
+function displayWorkoutPlan(plan) {
+    const planContent = document.getElementById("plan-content");
+    planContent.innerHTML = "";
+    plan.forEach((exercise) => {
+        const exerciseDiv = document.createElement("div");
+        exerciseDiv.classList.add("exercise");
+        exerciseDiv.innerHTML = `
+                <h3>${exercise.name}</h3>
+                <p>Equipment: ${exercise.equipment}</p>
+                <p>Primary Muscles: ${exercise.primaryMuscles.join(", ")}</p>
+                <p>Secondary Muscles: ${exercise.secondaryMuscles.join(
+                    ", "
+                )}</p>
+            `;
+        planContent.appendChild(exerciseDiv);
+    });
+}
