@@ -147,75 +147,6 @@ footer {
     text-align: center;
 }
 
-/********** WORKOUT PLANNER ***********/
-fieldset {
-    border: 1px solid var(--secondary-color);
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-}
-
-legend {
-    font-weight: bold;
-    color: var(--primary-color);
-    padding: 0 0.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-input[type="checkbox"] {
-    margin-right: 0.5rem;
-}
-
-form input[type="text"],
-form input[type="number"],
-form select {
-    background-color: #eee;
-    display: block;
-    border: solid 1px #999;
-    border-radius: 6px;
-    padding: 0.75rem;
-    color: #555;
-    width: 100%;
-    max-width: 400px;
-}
-
-form input[type="submit"] {
-    border: none;
-    background-color: var(--accent-color);
-    /* background-image: linear-gradient(
-        var(--accent-color),
-        var(--primary-color)
-    ); */
-    color: #fff;
-    border-radius: 6px;
-    padding: 0.8rem;
-    width: 96%;
-    max-width: 400px;
-    margin: -1rem 2% 2rem 2%;
-    box-shadow: 1px 1px 4px #999;
-    appearance: none;
-}
-
-form input:required {
-    border-right: solid 6px red;
-    /* background-color: red; */
-}
-
-form input:required:valid {
-    border-right: solid 6px green;
-}
-
-#planner-form {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
 /******** EXERCISE LIBRARY ******/
 #search-filter {
     margin-bottom: 2rem;
@@ -301,26 +232,6 @@ form input:required:valid {
     color: var(--text-color);
     text-decoration: none;
 }
-
-/* Anchor tags styled as buttons */
-/*
-.button {
-    display: inline-block;
-    padding: 1rem 1.25rem;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.button:hover,
-.button:focus {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-}
-*/
 
 /* Responsive design */
 @media screen and (max-width: 768px) {

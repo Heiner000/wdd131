@@ -1,80 +1,182 @@
+:root {
+    --primary-color: #244aa4;
+    --secondary-color: #c1d8fa;
+    --background-color: #f4f4f4;
+    --text-color: #333333;
+    --accent-color: #8b0000;
+    --heading-font: "Montserrat", sans-serif;
+    --body-font: "Open Sans", sans-serif;
+}
+
+fieldset {
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+fieldset:nth-of-type(1),
+fieldset:nth-of-type(4) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+legend {
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 0 0.5rem;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+#workout-duration {
+    margin-right: 1rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    background-color: var(--background-color);
+    border: solid 1px var(--secondary-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: var(--text-color);
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+form input[type="submit"] {
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    border-radius: 6px;
+    padding: 0.8rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem 0;
+    box-shadow: 1px 1px 4px var(--primary-color);
+    appearance: none;
+    cursor: pointer;
+}
+
+form input:required,
+select:required {
+    border-bottom: solid 3px red;
+}
+
+form input:required:valid,
+select:required:valid {
+    border-bottom: solid 2px green;
+}
+
+#planner-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
 #plan-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    border: dotted 3px chartreuse;
 }
 
-#plan-content table {
+.workout-plan-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 2rem;
-    border: dotted 3px chartreuse;
+    margin-bottom: 20px;
 }
 
-#plan-content th,
-#plan-content td {
-    border: 1px solid #ddd;
-    padding: 1.5rem;
+.workout-plan-table th,
+.workout-plan-table td {
+    border: 1px solid var(--accent-color);
+    padding: 1rem;
     text-align: left;
 }
 
-#plan-content th {
+.workout-plan-table th {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--background-color);
 }
 
-#plan-content tr:nth-child(even) {
-    background-color: var(--background-color);
+.exercise-instructions,
+.prog-strat {
+    background-color: #f9f9f9;
 }
 
-.workout-advice {
-    background-color: var(--background-color);
-    border-radius: 6px;
-    padding: 1rem;
-    margin-bottom: 2rem;
+.exercise-instructions details {
+    padding-left: 2rem;
 }
 
+.workout-advice,
 .overload-note {
-    font-style: italic;
-    color: #6c757d;
+    margin-top: 1.5rem;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 6px;
+}
+
+.required {
+    color: red;
 }
 
 @media screen and (max-width: 600px) {
-    #plan-content table,
-    #plan-content thead,
-    #plan-content tbody,
-    #plan-content th,
-    #plan-content td,
-    #plan-content tr {
+    .workout-plan-table,
+    .workout-plan-table tbody,
+    .workout-plan-table tr,
+    .workout-plan-table td {
         display: block;
+        width: 100%;
     }
 
-    #plan-content thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+    .workout-plan-table thead {
+        display: none;
     }
 
-    #plan-content tr {
-        border: 1px solid #ccc;
-        margin-bottom: 1rem;
-    }
-
-    #plan-content td {
-        border: none;
+    .workout-plan-table td {
         position: relative;
         padding-left: 50%;
+        text-align: right;
     }
 
-    #plan-content td:before {
-        position: absolute;
-        top: 0.6rem;
-        left: 0.5rem;
-        width: 45%;
-        padding-right: 1rem;
-        white-space: nowrap;
+    .workout-plan-table td::before {
         content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
         font-weight: bold;
+    }
+
+    .exercise-instructions {
+        text-align: left !important;
+        padding-left: 1rem !important;
+    }
+
+    .progression-strategy,
+    .workout-advice,
+    .overload-note {
+        text-align: left;
+        padding-left: 1.5rem;
+    }
+
+    select,
+    input {
+        height: auto;
     }
 }

@@ -42,12 +42,12 @@
             <h2>Create Your Workout Plan</h2>
             <form id="planner-form">
                 <fieldset>
-                    <legend>Available Equipment</legend>
+                    <legend>Available Equipment <span class="required">*</span></legend>
                     <!-- checkboxes will be dynamically populated w/ JS -->
                 </fieldset>
 
                 <fieldset>
-                    <legend>Fitness Level</legend>
+                    <legend>Fitness Level <span class="required">*</span></legend>
                     <select name="fitness-level" id="fitness-level" required>
                         <option value="">Select your fitness level...</option>
                         <option value="beginner">Beginner</option>
@@ -57,14 +57,14 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend>Workout Duration</legend>
+                    <legend>Workout Duration <span class="required">*</span></legend>
                     <label><input type="number" id="workout-duration" name="workout-duration" min="15" max="120"
                             steps="15" required>
                         minutes</label>
                 </fieldset>
 
                 <fieldset>
-                    <legend>Target Muscle Groups</legend>
+                    <legend>Target Muscle Groups <span class="required">*</span></legend>
                     <!-- checkboxes dynamically populated -->
                 </fieldset>
 

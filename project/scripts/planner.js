@@ -51,9 +51,9 @@ function populateFormFields() {
                 exercise.primaryMuscles.forEach((muscle) =>
                     uniqueMuscles.add(muscle)
                 );
-                exercise.secondaryMuscles.forEach((muscle) =>
-                    uniqueMuscles.add(muscle)
-                );
+                // exercise.secondaryMuscles.forEach((muscle) =>
+                //     uniqueMuscles.add(muscle)
+                // );
             });
 
             populateCheckboxes(
@@ -244,10 +244,10 @@ function selectExercises(groupedExercises, duration, fitnessLevel) {
             Math.random() * groupedExercises[randomMuscle].length
         );
 
-        selectExercises.push(groupedExercises[randomMuscle][randomIndex]);
+        selectedExercises.push(groupedExercises[randomMuscle][randomIndex]);
         groupedExercises[randomMuscle].splice(randomIndex, 1);
     }
-    return selectExercises;
+    return selectedExercises;
 }
 
 function determineExercisesPerMuscle(duration, fitnessLevel) {
@@ -281,26 +281,187 @@ function determineExercisesPerMuscle(duration, fitnessLevel) {
 // compile the workout plan
 function createWorkoutPlan(selectedExercises, fitnessLevel) {
     // plan the exercises, sets, reps, rest, and progression
+    let plan = {
+        exercises: [],
+        progression: determineProgression(fitnessLevel),
+    };
+    selectedExercises.forEach((exercise) => {
+        let exercisePlan = {
+            name: exercise.name,
+            sets: determineSets(fitnessLevel),
+            reps: determineReps(fitnessLevel, exercise.category),
+            rest: determineRest(fitnessLevel),
+            instructions: exercise.instructions,
+        };
+        plan.exercises.push(exercisePlan);
+    });
+    console.log("~~ CREATE WORKOUT PLAN: ", plan);
+    return plan;
 }
 
 // determine the number of sets
 function determineSets(fitnessLevel) {
     // base it on fitness level? category?
+    switch (fitnessLevel) {
+        case "beginner":
+            return 2;
+        case "intermediate":
+            return 3;
+        case "advanced":
+            return 4;
+        default:
+            return 3;
+    }
 }
 
 // determine the number of reps
 function determineReps(fitnessLevel, category) {
-    // reps based on fitness level & exercise category
+    const strengthReps = {
+        beginner: "8-12",
+        intermediate: "6-10",
+        advanced: "4-8",
+        default: "8-12",
+    };
+
+    const otherReps = {
+        beginner: "12-15",
+        intermediate: "15-20",
+        advanced: "20-25",
+        default: "12-15",
+    };
+
+    const reps = category === "strength" ? strengthReps : otherReps;
+
+    return `${reps[fitnessLevel] || reps.default}`;
 }
 
 // determine the rest periods
-function determineRest(fitnessLevel, category) {
-    // ****should maybe be based on reps & category?
+function determineRest(fitnessLevel) {
+    const restPeriods = {
+        beginner: "45-60 seconds",
+        intermediate: "60-90 seconds",
+        advanced: "60-120 seconds",
+        default: "30-60 seconds",
+    };
+
+    return `${restPeriods[fitnessLevel] || restPeriods.default}`;
 }
 
 // determine progression strat
 function determineProgression(fitnessLevel) {
-    // progression based on strategy
+    const message = {
+        beginner: `increase the weight by 2-5% or add 1-2 reps to each set.`,
+        intermediate: `increase the weight by 5-10% or add 1-2 reps to each set for two consecutive workouts.`,
+        advanced: `increase the weight by 5-10% or add an additional set for three consecutive workouts.`,
+        default: `consider increasing the weight or reps.`,
+    };
+
+    return `When you can complete all sets and reps with good form, ${
+        message[fitnessLevel] || message.default
+    }`;
+}
+
+// display the workout plan
+function displayWorkoutPlan(plan) {
+    const planContent = document.getElementById("plan-content");
+    planContent.innerHTML = ""; // clear previous plan first
+
+    // create main table
+    const table = document.createElement("table");
+    table.className = "workout-plan-table";
+
+    // create table header
+    const thead = document.createElement("thead");
+    thead.innerHTML = `
+        <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Rest</th>
+        </tr>`;
+    table.appendChild(thead);
+
+    // create the table body
+    const tbody = document.createElement("tbody");
+    plan.exercises.forEach((exercise, index) => {
+        console.log(`Processing exercise ${index + 1}: `, exercise);
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td data-label="Exercise">${exercise.name}</td>
+        <td data-label="Sets">${exercise.sets}</td>
+        <td data-label="Reps">${exercise.reps}</td>
+        <td data-label="Rest">${exercise.rest}</td>`;
+        tbody.appendChild(row);
+
+        // Add a row for exercise instructions
+        const instructionRow = document.createElement("tr");
+        const instructionCell = document.createElement("td");
+        instructionCell.colSpan = 4;
+        instructionCell.className = "exercise-instructions";
+
+        if (exercise.instructions && Array.isArray(exercise.instructions)) {
+            instructionCell.innerHTML = `
+            <details>
+                <summary>Instructions</summary>
+                <ol>
+                    ${exercise.instructions
+                        .map((instruction) => `<li>${instruction}</li>`)
+                        .join("")}
+                </ol>
+            </details>
+        `;
+        } else {
+            console.warn(
+                `Instructions for exercise ${
+                    index + 1
+                } are not defined or not an array.`
+            );
+            instructionCell.innerHTML = `
+            <details>
+                <summary>Instructions</summary>
+                <p>No instructions provided for this exercise.</p>
+            </details>
+        `;
+        }
+
+        instructionRow.appendChild(instructionCell);
+        tbody.appendChild(instructionRow);
+    });
+
+    table.appendChild(tbody);
+    planContent.appendChild(table);
+
+    // Add a single progression strategy note
+    const progressionNote = document.createElement("div");
+    progressionNote.className = "progression-strategy";
+    progressionNote.innerHTML = `
+        <h3>Progression Strategy:</h3>
+        <p>${plan.progression}</p>
+    `;
+    planContent.appendChild(progressionNote);
+
+    // add general workout advice
+    const advice = document.createElement("div");
+    advice.className = "workout-advice";
+    advice.innerHTML = `
+        <h3>General Workout Advice:</h3>
+        <ul>
+            <li>Warm up properly before starting your workout.</li>
+            <li>Stay hydrated throughout your session.</li>
+            <li>Focus on proper form to prevent injuries and maximize results.</li>
+            <li>Cool down and stretch after your workout.</li>
+            <li>Rest adequately between workouts to allow for recovery.</li>
+        </ul>
+    `;
+    planContent.appendChild(advice);
+
+    // Add a note about progressive overload
+    const overloadNote = document.createElement("p");
+    overloadNote.className = "overload-note";
+    overloadNote.innerHTML =
+        "<strong>Remember:</strong> Apply the progression strategy to each exercise to ensure continuous improvement.";
+    planContent.appendChild(overloadNote);
 }
 
 function savePlan() {
