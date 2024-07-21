@@ -21,6 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lastModifiedP = document.getElementById("lastModified");
     if (lastModifiedP) {
-        lastModifiedP.textContent = `Last Modified: ${lastModified}`;
+        const formattedLastModified = `${lastModified.getFullYear()} - ${(
+            lastModified.getMonth() + 1
+        )
+            .toString()
+            .padStart(2, "0")} - ${lastModified
+            .getDate()
+            .toString()
+            .padStart(2, "0")}`;
+        lastModifiedP.textContent = `Last Modified: ${formattedLastModified}`;
     }
 });
